@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        .recommendations {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation System</h1>
+        <p>Select a movie you like, and we'll suggest similar movies!</p>
+        <select id="movieSelect">
+            <option value="Inception">Inception</option>
+            <option value="Interstellar">Interstellar</option>
+            <option value="The Dark Knight">The Dark Knight</option>
+            <option value="Titanic">Titanic</option>
+            <option value="Avatar">Avatar</option>
+            <option value="The Matrix">The Matrix</option>
+        </select>
+        <button onclick="recommendMovies()">Get Recommendations</button>
+        <div class="recommendations" id="recommendationList"></div>
+    </div>
+
+    <script>
+        const movies = {
+            "Inception": ["Interstellar", "The Matrix", "The Dark Knight"],
+            "Interstellar": ["Inception", "Gravity", "The Martian"],
+            "The Dark Knight": ["Inception", "Joker", "Batman Begins"],
+            "Titanic": ["Avatar", "The Notebook", "Romeo + Juliet"],
+            "Avatar": ["Titanic", "Guardians of the Galaxy", "Avengers: Endgame"],
+            "The Matrix": ["Inception", "Blade Runner 2049", "Ghost in the Shell"]
+        };
+
+        function recommendMovies() {
+            let selectedMovie = document.getElementById("movieSelect").value;
+            let recommendations = movies[selectedMovie] || [];
+            document.getElementById("recommendationList").innerHTML = 
+                "<strong>Recommended Movies:</strong> " + recommendations.join(", ");
+        }
+    </script>
+</body>
+</html>
